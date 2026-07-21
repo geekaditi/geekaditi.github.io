@@ -186,12 +186,12 @@
     .skill-head { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
     .skill-head i { font-size: 22px; color: var(--accent-color); background: color-mix(in srgb, var(--accent-color), transparent 88%); width: 46px; height: 46px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .skill-head h4 { margin: 0; font-size: 15.5px; font-weight: 700; color: var(--heading-color); line-height: 1.3; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .skill-tags span {
-      font-size: 13px;
+      font-size: 12px;
       background: color-mix(in srgb, var(--accent-color), transparent 92%);
       color: color-mix(in srgb, var(--heading-color), transparent 5%);
-      padding: 6px 13px;
+      padding: 4px 10px;
       border-radius: 50px;
       border: 1px solid color-mix(in srgb, var(--accent-color), transparent 82%);
     }
@@ -236,19 +236,22 @@
     .services .service-item,
     .achievements .achievement-item { align-self: stretch; }
 
-    /* ---------- Hero: photo background with cinematic dark overlay ----------
-       To change the image, replace assets/img/hero-bg.jpg (or update the url below). */
+    /* ---------- Hero: UIUC Main Quad photo with cinematic dark overlay ---------- */
     #hero {
       background-color: #030a12;
       background-image:
-        linear-gradient(90deg, rgba(3,10,18,0.96) 0%, rgba(3,10,18,0.84) 42%, rgba(3,10,18,0.55) 100%),
-        url("assets/img/hero-bg.jpg");
+        linear-gradient(90deg, rgba(3,10,18,0.85) 0%, rgba(3,10,18,0.5) 42%, rgba(3,10,18,0.08) 100%),
+        url("assets/img/hero-quad.jpg");
       background-size: cover, cover;
       background-position: center, center;
       background-repeat: no-repeat, no-repeat;
     }
     #hero:before { display: none; }
     #hero:after { display: none; }
+    #hero h1, #hero .container > p { text-shadow: 0 2px 16px rgba(0,0,0,0.65); }
+    .hero-credit { position: absolute; bottom: 8px; right: 12px; z-index: 4; font-size: 5px; letter-spacing: 0.1px; color: rgba(255,255,255,0.28); }
+    .hero-credit a { color: rgba(255,255,255,0.4); text-decoration: underline; }
+    .hero-credit a:hover { color: #fff; }
 
     /* ---------- Research: project cards ---------- */
     #research .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -380,6 +383,8 @@
           <a href="#contact" class="btn-hero btn-hero-outline">Get in Touch</a>
         </div>
       </div>
+
+      <span class="hero-credit">Main Quad photo: <a href="https://commons.wikimedia.org/wiki/File:UIUC_Illini_Union_and_Main_Quad.jpg" target="_blank" rel="noopener">Daniel Schwen</a> · CC BY-SA 4.0</span>
 
     </section>
 
@@ -546,14 +551,14 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
             <div class="skill-box">
               <div class="skill-head"><i class="bi bi-diagram-3"></i><h4>Frameworks &amp; Distributed Systems</h4></div>
-              <div class="skill-tags"><span>gRPC</span><span>REST APIs</span><span>GraphQL</span><span>Spring Boot</span><span>Spring Framework</span><span>React</span><span>DynamoDB</span></div>
+              <div class="skill-tags"><span>gRPC</span><span>REST APIs</span><span>GraphQL</span><span>Spring Boot</span><span>Spring Framework</span><span>React</span><span>DynamoDB</span><span>BrowserStack</span></div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="skill-box">
               <div class="skill-head"><i class="bi bi-cloud"></i><h4>Cloud, DevOps &amp; Observability</h4></div>
-              <div class="skill-tags"><span>AWS</span><span>Kubernetes</span><span>Docker</span><span>Spinnaker</span><span>Jenkins</span><span>GitHub Actions</span><span>DataDog</span><span>Splunk</span><span>BrowserStack</span></div>
+              <div class="skill-tags"><span>AWS</span><span>Kubernetes</span><span>Docker</span><span>Spinnaker</span><span>Jenkins</span><span>GitHub Actions</span><span>DataDog</span><span>Splunk</span></div>
             </div>
           </div>
 
@@ -595,7 +600,7 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="skill-box">
               <div class="skill-head"><i class="bi bi-journal-code"></i><h4>Relevant Coursework</h4></div>
-              <div class="skill-tags"><span>Data Structures &amp; Algorithms</span><span>Object-Oriented Programming</span><span>Cloud Computing</span><span>Cybersecurity</span><span>Applied Mathematics</span></div>
+              <div class="skill-tags"><span>Data Structures &amp; Algorithms</span><span>Object-Oriented Programming</span><span>Database Design and Prototyping</span><span>Applied Business Research</span><span>Data, Statistical Models and Information</span><span>Sociotechnical Information Systems</span></div>
             </div>
           </div>
 
