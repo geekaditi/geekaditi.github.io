@@ -48,7 +48,10 @@
     #hero .sep { color: var(--accent-color); font-weight: 400; padding: 0 4px; }
     .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn-hero {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 12px 30px;
       border-radius: 50px;
       font-size: 16px;
@@ -68,6 +71,238 @@
     .stats .stats-item .purecounter { display: inline-block; margin-left: 0; line-height: 1; }
     .stats .stats-item .affix { font-size: 48px; font-weight: 700; line-height: 1; color: var(--heading-color); }
     .stats .stats-item p { margin: 14px 0 0 0; padding: 0; }
+    /* Even single-row layout for the 5 stat tiles */
+    #stats .container .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin: 0; }
+    #stats .container .row > * { width: auto !important; max-width: none; }
+    @media (max-width: 1100px) { #stats .container .row { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px) { #stats .container .row { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ---------- Spacing polish ---------- */
+    #about { padding-bottom: 20px; }
+    #about .row { align-items: center; }
+
+    /* ---------- About: info chips ---------- */
+    .about .content h3 { font-size: 26px; font-weight: 700; color: var(--heading-color); }
+    .about .content .fst-italic { font-size: 16px; line-height: 1.7; }
+    .about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+    .about-facts .fact {
+      display: flex; align-items: center; gap: 13px;
+      background: color-mix(in srgb, var(--accent-color), transparent 95%);
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 88%);
+      border-radius: 11px; padding: 12px 15px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .about-facts .fact:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+    .about-facts .fact i {
+      font-size: 18px; color: var(--accent-color); flex-shrink: 0;
+      width: 38px; height: 38px; border-radius: 9px;
+      background: color-mix(in srgb, var(--accent-color), transparent 86%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-facts .fact > div { display: flex; flex-direction: column; min-width: 0; }
+    .about-facts .fact-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 700; color: color-mix(in srgb, var(--default-color), transparent 45%); }
+    .about-facts .fact-value { font-size: 14px; font-weight: 600; color: var(--heading-color); overflow-wrap: anywhere; }
+    @media (max-width: 575px) { .about-facts { grid-template-columns: 1fr; } }
+    #stats { padding-top: 10px; padding-bottom: 50px; }
+    .section-title { padding-bottom: 30px; }
+
+    /* ---------- Section background rhythm ---------- */
+    #skills, #research, #achievements { background-color: #f5f9fc; }
+
+    /* Single separator between the About/Stats intro block and Experience.
+       Other boundaries use the background-color change as the separator. */
+    #experience {
+      border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    }
+
+    /* Skills/Education cards are inner boxes → Bootstrap gutters create the gap */
+    #skills .row, #education .row { --bs-gutter-x: 2rem; --bs-gutter-y: 2rem; }
+
+    /* Awards/Leadership: the card IS the column, so Bootstrap gutters (padding)
+       can't create visible gaps between the colored boxes. Use CSS grid with a
+       real gap instead so the cards are actually spaced apart. */
+    .services .container .row,
+    .achievements .container .row { display: grid; gap: 2rem; margin: 0; }
+    .services .container .row { grid-template-columns: repeat(3, 1fr); }
+    .achievements .container .row { grid-template-columns: repeat(2, 1fr); }
+    .services .service-item,
+    .achievements .achievement-item { width: auto !important; max-width: none; margin: 0 !important; }
+    @media (max-width: 992px) {
+      .services .container .row { grid-template-columns: repeat(2, 1fr); }
+      .achievements .container .row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .services .container .row { grid-template-columns: 1fr; }
+    }
+
+    /* ---------- Experience: full-width two-column timeline ---------- */
+    .xp-timeline { position: relative; }
+    .xp-timeline::before {
+      content: ""; position: absolute; top: 10px; bottom: 10px; left: 288px; width: 2px;
+      background: linear-gradient(var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 65%));
+    }
+    .xp-item {
+      display: grid; grid-template-columns: 260px 1fr; gap: 64px;
+      position: relative; padding-bottom: 44px;
+    }
+    .xp-item:last-child { padding-bottom: 0; }
+    .xp-item::before {
+      content: ""; position: absolute; left: 281px; top: 6px; width: 16px; height: 16px;
+      border-radius: 50%; background: var(--accent-color); border: 3px solid var(--surface-color);
+      box-shadow: 0 0 0 2px var(--accent-color);
+    }
+    .xp-side { text-align: right; padding-right: 6px; }
+    .xp-side .xp-period { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent-color); background: color-mix(in srgb, var(--accent-color), transparent 88%); padding: 5px 14px; border-radius: 50px; margin-bottom: 12px; }
+    .xp-side .xp-role { font-size: 18px; font-weight: 700; color: var(--heading-color); margin: 0 0 8px; line-height: 1.3; }
+    .xp-company { font-weight: 700; color: var(--heading-color); font-size: 15px; }
+    .xp-sub { font-size: 13.5px; color: color-mix(in srgb, var(--default-color), transparent 30%); margin-top: 3px; }
+    .xp-body {
+      background: var(--surface-color);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+      border-radius: 14px; padding: 22px 30px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .xp-body:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.10); }
+    .experience ul { padding-left: 20px; margin: 0; }
+    .experience ul li { padding-bottom: 9px; line-height: 1.65; font-size: 15px; }
+    .experience ul li:last-child { padding-bottom: 0; }
+    @media (max-width: 992px) {
+      .xp-timeline::before, .xp-item::before { display: none; }
+      .xp-item { grid-template-columns: 1fr; gap: 14px; padding-bottom: 30px; }
+      .xp-side { text-align: left; }
+    }
+
+    /* ---------- Skills: category cards with tag pills ---------- */
+    .skill-box {
+      background: var(--surface-color);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+      border-radius: 14px;
+      padding: 26px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    .skill-box:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.10); }
+    .skill-head { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
+    .skill-head i { font-size: 22px; color: var(--accent-color); background: color-mix(in srgb, var(--accent-color), transparent 88%); width: 46px; height: 46px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .skill-head h4 { margin: 0; font-size: 15.5px; font-weight: 700; color: var(--heading-color); line-height: 1.3; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tags span {
+      font-size: 13px;
+      background: color-mix(in srgb, var(--accent-color), transparent 92%);
+      color: color-mix(in srgb, var(--heading-color), transparent 5%);
+      padding: 6px 13px;
+      border-radius: 50px;
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 82%);
+    }
+
+    /* ---------- Education: icon cards ---------- */
+    .edu-card {
+      background: var(--surface-color);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+      border-radius: 14px;
+      padding: 30px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    .edu-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.10); }
+    .edu-icon { width: 54px; height: 54px; border-radius: 13px; background: var(--accent-color); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 25px; margin-bottom: 18px; }
+    .edu-card h4 { font-size: 17px; font-weight: 700; color: var(--heading-color); margin-bottom: 8px; line-height: 1.35; }
+    .edu-inst { font-weight: 600; color: var(--accent-color); margin-bottom: 10px; font-size: 14.5px; }
+    .edu-period { display: inline-block; font-size: 12.5px; font-weight: 600; color: var(--accent-color); background: color-mix(in srgb, var(--accent-color), transparent 88%); padding: 4px 13px; border-radius: 50px; margin-bottom: 10px; }
+    .edu-score { font-size: 14px; color: color-mix(in srgb, var(--default-color), transparent 25%); margin: 0; }
+
+    /* ---------- Awards + Leadership: consistent cards ---------- */
+    .services .service-item,
+    .achievements .achievement-item {
+      background: var(--surface-color);
+      padding: 28px 26px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .services .service-item:hover,
+    .achievements .achievement-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+    }
+    .achievements .achievement-title { font-size: 17px; }
+    .achievements .achievement-description { font-size: 14.5px; line-height: 1.65; }
+    /* Equal-height cards across each row */
+    .services .container .row,
+    .achievements .container .row { align-items: stretch; }
+    .services .service-item,
+    .achievements .achievement-item { align-self: stretch; }
+
+    /* ---------- Hero: photo background with cinematic dark overlay ----------
+       To change the image, replace assets/img/hero-bg.jpg (or update the url below). */
+    #hero {
+      background-color: #030a12;
+      background-image:
+        linear-gradient(90deg, rgba(3,10,18,0.96) 0%, rgba(3,10,18,0.84) 42%, rgba(3,10,18,0.55) 100%),
+        url("assets/img/hero-bg.jpg");
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
+    }
+    #hero:before { display: none; }
+    #hero:after { display: none; }
+
+    /* ---------- Research: project cards ---------- */
+    #research .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .proj-card { background: var(--surface-color); border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+    .proj-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.10); }
+    .proj-img { aspect-ratio: 16 / 10; overflow: hidden; }
+    .proj-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .proj-card:hover .proj-img img { transform: scale(1.05); }
+    .proj-body { padding: 20px 22px; display: flex; flex-direction: column; flex: 1; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .proj-tags span { font-size: 11.5px; font-weight: 600; color: var(--accent-color); background: color-mix(in srgb, var(--accent-color), transparent 90%); padding: 4px 10px; border-radius: 50px; }
+    .proj-body h4 { font-size: 16.5px; font-weight: 700; color: var(--heading-color); line-height: 1.35; margin-bottom: 8px; }
+    .proj-body p { font-size: 14px; line-height: 1.6; color: color-mix(in srgb, var(--default-color), transparent 15%); margin-bottom: 14px; flex: 1; }
+    .proj-link { font-size: 13.5px; font-weight: 600; color: var(--accent-color); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-top: auto; }
+    .proj-link:hover { text-decoration: underline; }
+    @media (max-width: 992px) { #research .proj-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { #research .proj-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- Contact: two-column (card + map) ---------- */
+    .contact-panel {
+      height: 100%; display: flex; flex-direction: column; justify-content: center;
+      background: var(--surface-color);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
+      border-radius: 18px; padding: 44px;
+      box-shadow: 0 4px 26px rgba(0,0,0,0.06);
+    }
+    .contact-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 22px 0 0; font-size: 14px; color: color-mix(in srgb, var(--default-color), transparent 25%); }
+    .contact-meta i { color: var(--accent-color); }
+    .contact-meta .cm-sep { color: color-mix(in srgb, var(--default-color), transparent 60%); margin: 0 6px; }
+    .contact-panel h3 { font-size: 26px; font-weight: 700; color: var(--heading-color); margin-bottom: 14px; }
+    .contact-lead { font-size: 16px; line-height: 1.7; color: color-mix(in srgb, var(--default-color), transparent 15%); margin: 0 0 26px; }
+    .contact-chips { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 28px; }
+    .contact-map { height: 100%; min-height: 400px; border-radius: 18px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%); box-shadow: 0 4px 26px rgba(0,0,0,0.06); }
+    .contact-map iframe { width: 100%; height: 100%; min-height: 400px; border: 0; display: block; }
+    .cchip {
+      display: flex; align-items: center; gap: 13px; text-decoration: none;
+      background: color-mix(in srgb, var(--accent-color), transparent 95%);
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 88%);
+      border-radius: 12px; padding: 14px 16px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    a.cchip:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+    .cchip i { font-size: 18px; color: var(--accent-color); flex-shrink: 0; width: 42px; height: 42px; border-radius: 10px; background: color-mix(in srgb, var(--accent-color), transparent 86%); display: flex; align-items: center; justify-content: center; }
+    .cchip > div { display: flex; flex-direction: column; min-width: 0; }
+    .cchip-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 700; color: color-mix(in srgb, var(--default-color), transparent 45%); }
+    .cchip-value { font-size: 13.5px; font-weight: 600; color: var(--heading-color); overflow-wrap: anywhere; }
+    .contact-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-start; margin-top: 0; }
+    .btn-outline-accent { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 50px; font-size: 15px; font-weight: 500; color: var(--accent-color); background: transparent; border: 2px solid var(--accent-color); transition: all 0.3s ease; text-decoration: none; }
+    .btn-outline-accent:hover { background: var(--accent-color); color: #fff; }
+    @media (max-width: 640px) {
+      .contact-chips { grid-template-columns: 1fr; }
+      .contact-panel { padding: 36px 24px; }
+    }
+
     @media (max-width: 640px) {
       #hero h1 { font-size: 40px !important; margin-bottom: 8px; }
       #hero .container p { max-width: 100% !important; overflow-wrap: break-word; }
@@ -121,7 +356,9 @@
       <ul>
         <li><a href="#hero" class="active"><i class="bi bi-house-door navicon"></i>Home</a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-        <li><a href="#resume"><i class="bi bi-person-workspace navicon"></i> Resume</a></li>
+        <li><a href="#experience"><i class="bi bi-briefcase navicon"></i> Experience</a></li>
+        <li><a href="#skills"><i class="bi bi-code-square navicon"></i> Skills</a></li>
+        <li><a href="#education"><i class="bi bi-mortarboard navicon"></i> Education</a></li>
         <li><a href="#research"><i class="bi bi-journal-text navicon"></i> Research and Projects</a></li>
         <li><a href="#services"><i class="bi bi-trophy navicon"></i>Awards and Achievements</a></li>
         <li><a href="#achievements"><i class="bi bi-person-check navicon"></i>Leadership Roles</a></li>
@@ -134,14 +371,12 @@
   <main class="main">
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
-
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <h1 style="font-size: 80px; margin-bottom: 10px;">Aditi Saxena</h1>
         <p style="font-size: 30px; margin-bottom: 20px;">Software Engineer <span class="sep">&middot;</span> Product Builder <span class="sep">&middot;</span> Graduate Student @ UIUC</p>
-        <p style="font-size: 21px; line-height: 1.5; max-width: 760px; margin-bottom: 30px;">Building payments &amp; AI infrastructure for millions of travelers at Expedia Group, now an M.S. student at UIUC.</p>
+        <p style="font-size: 21px; line-height: 1.5; max-width: 760px; margin-bottom: 30px;">Built payments &amp; AI infrastructure for millions of travelers at Expedia Group — now an M.S. student at UIUC.</p>
         <div class="hero-cta">
-          <a href="#resume" class="btn-hero">View My Work</a>
+          <a href="#experience" class="btn-hero">View My Work</a>
           <a href="#contact" class="btn-hero btn-hero-outline">Get in Touch</a>
         </div>
       </div>
@@ -165,24 +400,16 @@
             <p class="fst-italic py-3">
               I've spent four years at Expedia Group building the systems millions of travelers depend on — from the payments powering the checkout page to the deployment infrastructure that ships code safely across the company. I love working at the seam of solid engineering and real product impact.
             </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Current Role:</strong> <span>SDE II, Payments @ Expedia Group</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Education:</strong> <span>M.S., University of Illinois Urbana-Champaign</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>Champaign, IL, USA</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Focus:</strong> <span>Distributed Systems, AI, Product</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Research:</strong> <span>IEEE-published (CONIT 2022)</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>aditisaxena0704@gmail.com</span></li>
-                </ul>
-              </div>
+            <div class="about-facts">
+              <div class="fact"><i class="bi bi-mortarboard"></i><div><span class="fact-label">Education</span><span class="fact-value">M.S. Information Management · UIUC</span></div></div>
+              <div class="fact"><i class="bi bi-briefcase"></i><div><span class="fact-label">Most Recent Role</span><span class="fact-value">SDE II, Payments · Expedia Group</span></div></div>
+              <div class="fact"><i class="bi bi-geo-alt"></i><div><span class="fact-label">Location</span><span class="fact-value">Champaign, IL, USA</span></div></div>
+              <div class="fact"><i class="bi bi-diagram-3"></i><div><span class="fact-label">Focus</span><span class="fact-value">Distributed Systems, AI, Product</span></div></div>
+              <div class="fact"><i class="bi bi-journal-bookmark"></i><div><span class="fact-label">Research</span><span class="fact-value">IEEE-published (CONIT 2022)</span></div></div>
+              <div class="fact"><i class="bi bi-envelope"></i><div><span class="fact-label">Email</span><span class="fact-value">aditisaxena0704@gmail.com</span></div></div>
             </div>
             <p>
-              Beyond shipping payment methods across international markets, I build agentic AI workflows that turn hours of manual work into seconds, publish machine-learning research, and mentor communities working to close the gender gap in tech. Outside of work, I'm a lifelong reader and a musician.
+              Beyond shipping payment methods across international markets, I build agentic AI workflows that turn hours of manual work into seconds, publish machine-learning research, and mentor communities working to close the gender gap in tech. Outside of work, I'm an avid traveler, a lifelong reader, and a trained musician.
             </p>
           </div>
         </div>
@@ -205,7 +432,7 @@
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-credit-card-2-front"></i>
-              <div class="counter-line"><span data-purecounter-start="0" data-purecounter-end="7" data-purecounter-duration="1" class="purecounter"></span></div>
+              <div class="counter-line"><span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span><span class="affix">+</span></div>
               <p>Payment Methods Launched</p>
             </div>
           </div>
@@ -226,207 +453,260 @@
             </div>
           </div>
 
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-lightbulb"></i>
+              <div class="counter-line"><span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span><span class="affix">+</span></div>
+              <p>ML / AI Projects</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section><!-- /Stats Section -->
 
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
+    <!-- Experience Section -->
+    <section id="experience" class="experience section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Professional Experience</h2>
+        <p>Four years building high-scale systems for millions of travelers at Expedia Group.</p>
+      </div>
+
       <div class="container">
-        <div class="row">
-    
-          <!-- Left Column: Education and Skills -->
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            
-            <!-- Education Section -->
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Science in Information Management</h4>
-              <p><em>2026 - 2028</em></p>
-              <p><em>University of Illinois Urbana-Champaign, USA</em></p>
-            </div><!-- Edn Resume Item -->
+        <div class="xp-timeline">
 
-            <div class="resume-item">
-              <h4>Bachelor of Technology</h4>
-              <h4>Electronics and Communication Engineering</h4>
-              <p><em>2018 - 2022</em></p>
-              <p><em>Indira Gandhi Delhi Technical University For Women, Delhi</em></p>
-              <p><em>Percentage - 82.98%</em></p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Intermediate (Class XII)</h4>
-              <p><em>2016 - 2017</em></p>
-              <p><em>Delhi Public School, Ghaziabad</em></p>
-              <p><em>Percentage - 95.20%</em></p>
-            </div><!-- Edn Resume Item -->
-
-            <!-- Skills Section -->
-            <h3 class="resume-title">Skills</h3>
-            <div class="resume-item">
-              <h4>Relevant Coursework</h4>
-              <p><em>Data Structures & Algorithms, Object-Oriented Programming, Cloud Computing, Cybersecurity, Applied Mathematics</em></p>
+          <div class="xp-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="xp-side">
+              <span class="xp-period">Oct 2023 – Aug 2026</span>
+              <h4 class="xp-role">Software Development Engineer II</h4>
+              <div class="xp-company">Expedia Group</div>
+              <div class="xp-sub">Payments · Gurugram, India</div>
             </div>
-
-            <div class="resume-item">
-              <h4>Programming Languages</h4>
-              <p><em>Java, C++, Python, TypeScript, JavaScript, Kotlin, SQL</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>Frameworks & Distributed Systems</h4>
-              <p><em>gRPC, REST APIs, GraphQL, Spring Boot, Spring Framework, React, DynamoDB</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>Cloud, DevOps & Observability</h4>
-              <p><em>AWS, Kubernetes, Docker, Spinnaker, Jenkins, GitHub Actions, DataDog, Splunk, BrowserStack</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>Machine Learning & Deep Learning</h4>
-              <p><em>TensorFlow, PyTorch, scikit-learn, Pandas, NumPy, CNNs, RNNs/LSTMs, Transformers</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>AI & Automation</h4>
-              <p><em>Claude Code, GitHub Copilot, n8n, MCP Integrations, Glean</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>Product & Collaboration</h4>
-              <p><em>Jira, Confluence, Figma, Miro, Agile/Scrum</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>Certifications</h4>
-              <p><em>AWS Certified Cloud Practitioner, Neural Networks and Deep Learning by Andrew Ng</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>Expertise Area</h4>
-              <p><em>Full-stack development, Low-Level design, Distributed microservice architecture, Automated cross-browser testing, CI/CD and infrastructure tools, Containerized and cloud-native development</em></p>
-            </div>
-    
-          </div><!-- End Left Column -->
-    
-          <!-- Right Column: Professional Experience -->
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            
-            <h3 class="resume-title">Professional Experience</h3>
-            
-            <div class="resume-item">
-              <h4>Software Development Engineer - II, Expedia Group </h4>
-              <p><em>Payments</em></p>
-              <p><em>Oct 2023 - Aug 2026</em></p>
+            <div class="xp-body">
               <ul>
                 <li>Launched and owned the end-to-end distributed microservices architecture of the Payment module on Expedia's checkout page — delivering 3D Secure OTP authentication and integrations with Apple Pay, Google Pay, Adyen, Affirm, Pay Later, Loyalty Points and the One Key Credit Card (with Wells Fargo), powering payments across <strong>$100B+ in annual gross bookings</strong> for millions of travelers</li>
                 <li>Built a config-driven, low-code framework that accelerated onboarding of new payment methods into international markets, and optimized client-server communication and database operations for high-performance, fault-tolerant payment flows under high traffic</li>
                 <li>Built agentic AI workflows with LLM-powered tools (Claude Code, n8n, MCP) that autonomously gather data from Tableau, DataDog, Jenkins, Jira and CloudZero, publish a weekly operations report to Confluence, and share it to team channels via a custom Slack bot — cutting a recurring 5-hour manual task to <strong>under 1 minute</strong></li>
                 <li>Partnered with product managers, designers, and QA in Agile teams to define requirements and ship features; analyzed checkout error data to quantify failure rates, prioritized fixes by traveler impact, and improved authorization success and checkout experience quality</li>
               </ul>
-            </div><!-- End Resume Item -->
-    
-            <div class="resume-item">
-              <h4>Software Development Engineer - I, Expedia Group </h4>
-              <p><em>Delivery Platform &amp; Infrastructure (DevOps)</em></p>
-              <p><em>Aug 2022 - Oct 2023</em></p>
+            </div>
+          </div>
+
+          <div class="xp-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="xp-side">
+              <span class="xp-period">Aug 2022 – Oct 2023</span>
+              <h4 class="xp-role">Software Development Engineer I</h4>
+              <div class="xp-company">Expedia Group</div>
+              <div class="xp-sub">Delivery Platform &amp; Infrastructure (DevOps) · Gurugram, India</div>
+            </div>
+            <div class="xp-body">
               <ul>
                 <li>Developed a cloud-native Progressive Deployment plugin for Spinnaker using Kubernetes, Docker and React, enabling distributed, staged traffic shifting across all Expedia microservices with quick emergency rollbacks</li>
                 <li>The plugin ensures high-availability and deployment safety by minimizing risk exposure to travelers and preventing revenue loss from service downtime — and was <strong>adopted as mandatory across the entire engineering organization</strong></li>
               </ul>
-            </div><!-- End Resume Item -->
-    
-            <div class="resume-item">
-              <h4>Software Development Engineer Intern, Expedia Group </h4>
-              <p><em>Data Intelligence</em></p>
-              <p><em>May 2021 - Jul 2021</em></p>
+            </div>
+          </div>
+
+          <div class="xp-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="xp-side">
+              <span class="xp-period">May 2021 – Jul 2021</span>
+              <h4 class="xp-role">Software Development Engineer Intern</h4>
+              <div class="xp-company">Expedia Group</div>
+              <div class="xp-sub">Data Intelligence · Gurugram, India</div>
+            </div>
+            <div class="xp-body">
               <ul>
                 <li>Conducted a proof-of-concept to migrate analytics from Snowflake to Expedia Group's Data Lake (EGDL) for business intelligence, significantly reducing compute cost and eliminating redundant data storage</li>
                 <li>Integrated cross-domain datasets (Clickstream, Booking, Customer Experience) with Looker and Dremio to enable real-time querying over large-scale Hive data, achieving a <strong>3&times; improvement</strong> in dashboard load times over Snowflake</li>
               </ul>
-            </div><!-- End Resume Item -->
-    
-          </div><!-- End Right Column -->
-    
-        </div><!-- End Row -->
-      </div><!-- End Container -->
-    </section><!-- /Resume Section -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /Experience Section -->
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Skills</h2>
+        <p>The languages, frameworks, and tools I use to design, build, and ship.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4 skill-grid">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-code-slash"></i><h4>Programming Languages</h4></div>
+              <div class="skill-tags"><span>Java</span><span>C++</span><span>Python</span><span>TypeScript</span><span>JavaScript</span><span>Kotlin</span><span>SQL</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-diagram-3"></i><h4>Frameworks &amp; Distributed Systems</h4></div>
+              <div class="skill-tags"><span>gRPC</span><span>REST APIs</span><span>GraphQL</span><span>Spring Boot</span><span>Spring Framework</span><span>React</span><span>DynamoDB</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-cloud"></i><h4>Cloud, DevOps &amp; Observability</h4></div>
+              <div class="skill-tags"><span>AWS</span><span>Kubernetes</span><span>Docker</span><span>Spinnaker</span><span>Jenkins</span><span>GitHub Actions</span><span>DataDog</span><span>Splunk</span><span>BrowserStack</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-cpu"></i><h4>Machine Learning &amp; Deep Learning</h4></div>
+              <div class="skill-tags"><span>TensorFlow</span><span>PyTorch</span><span>scikit-learn</span><span>Pandas</span><span>NumPy</span><span>CNNs</span><span>RNNs/LSTMs</span><span>Transformers</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-robot"></i><h4>AI &amp; Automation</h4></div>
+              <div class="skill-tags"><span>Claude Code</span><span>GitHub Copilot</span><span>n8n</span><span>MCP Integrations</span><span>Glean</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-kanban"></i><h4>Product &amp; Collaboration</h4></div>
+              <div class="skill-tags"><span>Jira</span><span>Confluence</span><span>Figma</span><span>Miro</span><span>Agile/Scrum</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-stars"></i><h4>Expertise Areas</h4></div>
+              <div class="skill-tags"><span>Full-stack Development</span><span>Low-Level Design</span><span>Microservice Architecture</span><span>Cross-browser Testing</span><span>CI/CD</span><span>Cloud-native Development</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="450">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-patch-check"></i><h4>Certifications</h4></div>
+              <div class="skill-tags"><span>AWS Certified Cloud Practitioner</span><span>Neural Networks &amp; Deep Learning (Andrew Ng)</span></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="skill-box">
+              <div class="skill-head"><i class="bi bi-journal-code"></i><h4>Relevant Coursework</h4></div>
+              <div class="skill-tags"><span>Data Structures &amp; Algorithms</span><span>Object-Oriented Programming</span><span>Cloud Computing</span><span>Cybersecurity</span><span>Applied Mathematics</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /Skills Section -->
+
+    <!-- Education Section -->
+    <section id="education" class="education section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Education</h2>
+        <p>My academic foundation in engineering, systems, and information management.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4 edu-grid">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="edu-card">
+              <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+              <h4>M.S. in Information Management</h4>
+              <p class="edu-inst">University of Illinois Urbana-Champaign</p>
+              <span class="edu-period">2026 – 2028</span>
+              <p class="edu-score">Champaign, IL, USA</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="edu-card">
+              <div class="edu-icon"><i class="bi bi-mortarboard"></i></div>
+              <h4>B.Tech, Electronics &amp; Communication Engineering</h4>
+              <p class="edu-inst">Indira Gandhi Delhi Technical University for Women</p>
+              <span class="edu-period">2018 – 2022</span>
+              <p class="edu-score">New Delhi, India · 82.98%</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="edu-card">
+              <div class="edu-icon"><i class="bi bi-book"></i></div>
+              <h4>Intermediate (Class XII)</h4>
+              <p class="edu-inst">Delhi Public School, Ghaziabad</p>
+              <span class="edu-period">2016 – 2017</span>
+              <p class="edu-score">CBSE · 95.20%</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /Education Section -->
 
 
     <section id="research" class="research section">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Research and Projects</h2>
-        <p>Explore my research work in the fields of Machine Learning, AI, and Web Development.</p>
+        <p>Published research and applied ML/AI projects across security, healthcare, climate, and NLP.</p>
       </div><!-- End Section Title -->
-      
-      <div class="container">
-        <div class="row gy-4">
-    
-          <!-- Research Paper 1 -->
-          <div class="col-lg-12 col-md-12 research-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="research-text">
-              <h4>Automatic threat detection using URL classification techniques</h4>
-              <p class="tools-and-tech"><strong>Tools & Technologies:</strong> Machine Learning (ML), Deep Learning (DL)</p>
-              <p><strong>Summary:</strong> The paper discussed various machine learning approaches, including artificial neural networks, adaptive boosting, decision trees, random forest regression, and principal component analysis, to detect security flaws such as SQL injection, Cross-Site Scripting, malicious URLs, phishing attacks, path traversal, and shell injection.</p>
-              <p><strong>Publication:</strong> This paper was selected for the International Conference on Intelligent Technologies (<a href="https://ieeexplore.ieee.org/document/9847838" target="_blank">CONIT, 2022</a>)  and published in IEEE Xplore.</p>
-            </div>
-            <div class="research-image">
-              <img src="assets/img/threat.jpeg" alt="Automatic Threat Detection" class="img-fluid">
-            </div>
-          </div><!-- End Research Item -->          
-    
-          <!-- Research Paper 2 -->
-          <div class="col-lg-12 col-md-12 research-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="research-text">
-              <h4>Calculating drought probabilities across sub-divisions of India</h4>
-              <p class="tools-and-tech"><strong>Tools & Technologies:</strong> Python, Matplotlib</p>
-              <p><strong>Summary:</strong> Analyzed annual precipitation data from 1901 to 2017, sourced from the National Data Sharing and Accessibility Policy (NDSAP) to predict drought probabilities across 36 sub-divisions of India.</p>
-              <p><strong>Award:</strong> This research won the <a href="https://drive.google.com/file/d/1_LbFukTk3i7r3cVIi8aF2TJIrrNYwm4O/view?usp=drive_link" target="_blank">Best Presentation Award</a> at the Multidisciplinary Conference on Engineering Science & Technology (MCEST, 2022) in the AI/ML and Data Science track.</p>
-            </div>
-            <div class="research-image">
-              <img src="assets/img/drt.jpeg" alt="Drought Prediction" class="img-fluid">
-            </div>
-          </div><!-- End Research Item -->
-    
-          <!-- Research Paper 3 -->
-          <div class="col-lg-12 col-md-12 research-item d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="research-text">
-              <h4>AutoVaidya-AI based diagnosis of Invasive Ductal Carcinoma</h4>
-              <p class="tools-and-tech"><strong>Tools & Technologies:</strong> Tensorflow, Keras</p>
-              <p><strong>Summary:</strong> As a part of <a href="https://drive.google.com/file/d/1nadnTMGH8K2Z7guz3z3Dw8gKDI6HOE12/view?usp=drive_link" target="_blank">Wootech</a> mentorship program 2020, I developed an image classification model to differentiate between histopathology scans of normal lymph node tissues and metastatic tissues for the early detection of IDC.</p>
-              <p><strong>Validation:</strong> Performed rigorous validation to ensure the model could adapt across different datasets, ensuring its dependability in actual clinical settings.</p>
-            </div>
-            <div class="research-image">
-              <img src="assets/img/carcinoma.jpeg" alt="AutoVaidya Diagnosis" class="img-fluid">
-            </div>
-          </div><!-- End Research Item -->
-    
-          <!-- Research Paper 4 -->
-          <div class="col-lg-12 col-md-12 research-item d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="research-text">
-              <h4>Automatic image captioning</h4>
-              <p class="tools-and-tech"><strong>Tools & Technologies:</strong> ResNet50model, LSTM, Keras, Numpy</p>
-              <p><strong>Summary:</strong> The image is sent into CNN, which recognizes the activity in the image and creates a vector representation, which is then fed into the LSTM model, which generates a word and a caption. I built a multimodal neural network that uses feature vectors generated by both RNN and CNN, which means we'll need two inputs. The first is the image we need to describe, which serves as a feed to the CNN, and the second is the words in the text sequence that have been produced thus far as a sequence, which serves as the RNN's input.</p>
-            </div>
-            <div class="research-image">
-              <img src="assets/img/image.jpeg" alt="Image Captioning" class="img-fluid">
-            </div>
-          </div><!-- End Research Item -->
 
-          <!-- Research Paper 4 -->
-          <div class="col-lg-12 col-md-12 research-item d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="research-text">
-              <h4>Anxidote-Website to predict anxiety & depression levels</h4>
-              <p class="tools-and-tech"><strong>Tools & Technologies:</strong> HTML, CSS, JavaScript, Machine learning (ML)</p>
-              <p><strong>Summary:</strong> We have designed a <a href="https://devfolio.co/projects/anxidote" target="_blank">website</a> in which all a person needs to do is take our survey which has questions taken from DASS’21 research paper. On the basis of the formula given, our application calculates a score according to the answers selected by the people. Our Machine Learning model is trained on a dataset using an algorithm to predict the level of anxiety the person is suffering with. Our website will serve as a platform to raise awareness about anxiety issues and provide helpful resources to those who need it. </p>
+      <div class="container">
+        <div class="proj-grid">
+
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="proj-img"><img src="assets/img/threat.jpeg" alt="Automatic Threat Detection"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Machine Learning</span><span>Deep Learning</span><span>Security</span></div>
+              <h4>Automatic Threat Detection using URL Classification</h4>
+              <p>Compared ANN, adaptive boosting, and decision-tree approaches to detect SQL injection, XSS, malicious URLs, phishing, path traversal, and shell injection.</p>
+              <a class="proj-link" href="https://ieeexplore.ieee.org/document/9847838" target="_blank">Published in IEEE Xplore &middot; CONIT 2022 <i class="bi bi-box-arrow-up-right"></i></a>
             </div>
-            <div class="research-image">
-              <img src="assets/img/anxidote.jpeg" alt="Image Captioning" class="img-fluid">
+          </div>
+
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="proj-img"><img src="assets/img/drt.jpeg" alt="Drought Probability Prediction"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Python</span><span>Matplotlib</span><span>ML</span></div>
+              <h4>Drought Probability Prediction across India</h4>
+              <p>Modeled annual precipitation data (1901&ndash;2017) across 36 Indian sub-divisions to predict drought probabilities.</p>
+              <a class="proj-link" href="https://drive.google.com/file/d/1_LbFukTk3i7r3cVIi8aF2TJIrrNYwm4O/view?usp=drive_link" target="_blank">Best Presentation Award &middot; MCEST 2022 <i class="bi bi-box-arrow-up-right"></i></a>
             </div>
-          </div><!-- End Research Item -->
-    
+          </div>
+
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="proj-img"><img src="assets/img/carcinoma.jpeg" alt="AutoVaidya IDC Diagnosis"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>TensorFlow</span><span>Keras</span><span>CNN</span></div>
+              <h4>AutoVaidya &mdash; AI Diagnosis of Invasive Ductal Carcinoma</h4>
+              <p>Built an image-classification model to distinguish normal from metastatic histopathology tissue for early IDC detection, validated across datasets.</p>
+              <a class="proj-link" href="https://drive.google.com/file/d/1nadnTMGH8K2Z7guz3z3Dw8gKDI6HOE12/view?usp=drive_link" target="_blank">Wootech Mentorship 2020 <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+          </div>
+
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="250">
+            <div class="proj-img"><img src="assets/img/image.jpeg" alt="Automatic Image Captioning"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>CNN</span><span>LSTM</span><span>Keras</span><span>NumPy</span></div>
+              <h4>Automatic Image Captioning</h4>
+              <p>Built a multimodal neural network combining CNN image features with an LSTM language model to generate natural-language captions from images.</p>
+            </div>
+          </div>
+
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="proj-img"><img src="assets/img/anxidote.jpeg" alt="Anxidote"></div>
+            <div class="proj-body">
+              <div class="proj-tags"><span>Machine Learning</span><span>JavaScript</span><span>Web</span></div>
+              <h4>Anxidote &mdash; Anxiety &amp; Depression Screening</h4>
+              <p>A web app using a DASS-21-based survey and an ML model to estimate anxiety levels, built to raise awareness and surface helpful resources.</p>
+              <a class="proj-link" href="https://devfolio.co/projects/anxidote" target="_blank">View on Devfolio <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section><!-- /Research Section -->    
@@ -509,50 +789,50 @@
         <div class="container">
           <div class="row gy-4">
             <!-- Women in Big Data | IGDTUW -->
-            <div class="col-lg-6 col-md-12 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-6 col-md-12 achievement-item d-flex" data-aos="fade-up" data-aos-delay="100">
               <div class="icon flex-shrink-0">
                 <a href="https://drive.google.com/file/d/14V9-NLIbJ1kAtY6bmxOoC9r0fhbs7X-m/view?usp=drive_link" target="_blank">
                   <i class="bi bi-person-check"></i>
                 </a>
               </div>
               <div>
-                <h4 class="title">
+                <h4 class="achievement-title">
                   <a href="https://drive.google.com/file/d/14V9-NLIbJ1kAtY6bmxOoC9r0fhbs7X-m/view?usp=drive_link" class="stretched-link" target="_blank">Women in Big Data | IGDTUW</a>
                 </h4>
-                <p class="description"><strong>Founder:</strong> Selected as one of the 5 executive members to establish the IGDTUW chapter of WiBD, a non-profit organization dedicated to reducing the gender gap in Data Science. Played a key role in building initiatives and a supportive network empowering women to pursue leadership in Data Science. (2022)</p>
-                <p class="description"><strong>Digital Media & Social Media Analytics Intern:</strong> Collaborated with the Director of WiBD India and international chapters to organize mentorship sessions, workshops, and networking events aimed at empowering women in Data Science in collaboration with sponsors like the University of Southern California, AWS, Netflix, and Walt Disney. (2022)</p>
+                <p class="achievement-description"><strong>Founder:</strong> Selected as one of the 5 executive members to establish the IGDTUW chapter of WiBD, a non-profit organization dedicated to reducing the gender gap in Data Science. Played a key role in building initiatives and a supportive network empowering women to pursue leadership in Data Science. (2022)</p>
+                <p class="achievement-description"><strong>Digital Media & Social Media Analytics Intern:</strong> Collaborated with the Director of WiBD India and international chapters to organize mentorship sessions, workshops, and networking events aimed at empowering women in Data Science in collaboration with sponsors like the University of Southern California, AWS, Netflix, and Walt Disney. (2022)</p>
               </div>
             </div><!-- End Achievement Item -->
       
             <!-- Tarannum, The Music Society | IGDTUW -->
-            <div class="col-lg-6 col-md-12 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-6 col-md-12 achievement-item d-flex" data-aos="fade-up" data-aos-delay="200">
               <div class="icon flex-shrink-0">
                 <a href="https://drive.google.com/file/d/11hVSXVoim_79r7XT16IV7HQXDaDxTWey/view?usp=drive_link" target="_blank">
                   <i class="bi bi-music-note-beamed"></i>
                 </a>
               </div>
               <div>
-                <h4 class="title">
+                <h4 class="achievement-title">
                   <a href="https://drive.google.com/file/d/11hVSXVoim_79r7XT16IV7HQXDaDxTWey/view?usp=drive_link" class="stretched-link" target="_blank">Tarannum, The Music Society | IGDTUW</a>
                 </h4>
-                <p class="description"><strong>President:</strong> Led a team of 50 members across three ensembles: Classical Indian Choir, A Capella Team, and Band in inter-college competitions. Coordinated rehearsals, performances, and promotional activities to boost engagement and talent development. Organized and managed music events and competitions at IGDTUW, attracting participants from universities across Delhi, India. (2020-2021)</p>
-                <p class="description"><strong>Treasurer:</strong> Oversaw financial management, budgeting, and resource allocation, ensuring smooth operations and event executions. (2018-2019)</p>
+                <p class="achievement-description"><strong>President:</strong> Led a team of 50 members across three ensembles: Classical Indian Choir, A Capella Team, and Band in inter-college competitions. Coordinated rehearsals, performances, and promotional activities to boost engagement and talent development. Organized and managed music events and competitions at IGDTUW, attracting participants from universities across Delhi, India. (2020-2021)</p>
+                <p class="achievement-description"><strong>Treasurer:</strong> Oversaw financial management, budgeting, and resource allocation, ensuring smooth operations and event executions. (2018-2019)</p>
               </div>
             </div><!-- End Achievement Item -->
             
             <!-- Innerve, The Annual Technical Festival | IGDTUW -->
-            <div class="col-lg-6 col-md-12 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-lg-6 col-md-12 achievement-item d-flex" data-aos="fade-up" data-aos-delay="300">
               <div class="icon flex-shrink-0">
                 <a href="https://drive.google.com/file/d/1E77phWznzmfeN2ISQX7OGL5uPuB0CWxx/view?usp=drive_link" target="_blank">
                   <i class="bi bi-gear"></i>
                 </a>
               </div>
               <div>
-                <h4 class="title">
+                <h4 class="achievement-title">
                   <a href="https://drive.google.com/file/d/1E77phWznzmfeN2ISQX7OGL5uPuB0CWxx/view?usp=drive_link" class="stretched-link" target="_blank">Innerve, The Annual Technical Festival | IGDTUW</a>
                 </h4>
-                <p class="description"><strong>Sponsorship Coordinator:</strong> Led sponsorship efforts, securing resources and partnerships for the events. (2018)</p>
-                <p class="description"><strong>Head Coordinator of the Electronics and Communication Engineering Technical Team:</strong> Oversaw the technical projects and events. (2019)</p>
+                <p class="achievement-description"><strong>Sponsorship Coordinator:</strong> Led sponsorship efforts, securing resources and partnerships for the events. (2018)</p>
+                <p class="achievement-description"><strong>Head Coordinator of the Electronics and Communication Engineering Technical Team:</strong> Oversaw the technical projects and events. (2019)</p>
               </div>
             </div><!-- End Achievement Item -->
           </div>
@@ -568,67 +848,23 @@
   </div><!-- End Section Title -->
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-    <div class="row gy-4 d-flex"> <!-- Added 'd-flex' class to the row for flexbox behavior -->
-
-      <div class="col-lg-5 d-flex"> <!-- Added 'd-flex' to stretch the column -->
-        <div class="info-wrap w-100">
-          <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <i class="bi bi-geo-alt flex-shrink-0"></i>
-            <div>
-              <h3>Location</h3>
-              <p>Champaign, IL, USA</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-            <i class="bi bi-envelope flex-shrink-0"></i>
-            <div>
-              <h3>Email</h3>
-              <p>aditisaxena0704@gmail.com</p>
-            </div>
-          </div><!-- End Info Item -->
-
-          <iframe src="https://maps.google.com/maps?q=University%20of%20Illinois%20Urbana-Champaign&output=embed" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7">
+        <div class="contact-panel">
+          <h3>Let's connect</h3>
+          <p class="contact-lead">Whether it's a Summer 2027 internship, a project, or a conversation about payments, AI, or product — I'd love to hear from you. The fastest way to reach me is by email.</p>
+          <div class="contact-btns">
+            <a href="mailto:aditisaxena0704@gmail.com" class="btn-hero"><i class="bi bi-envelope-fill"></i> Email Me</a>
+            <a href="https://www.linkedin.com/in/aditi-17/" target="_blank" class="btn-outline-accent"><i class="bi bi-linkedin"></i> Connect on LinkedIn</a>
+          </div>
+          <p class="contact-meta"><i class="bi bi-envelope"></i> aditisaxena0704@gmail.com <span class="cm-sep">·</span> <i class="bi bi-geo-alt"></i> Champaign, IL, USA</p>
         </div>
       </div>
-
-      <div class="col-lg-7 d-flex"> <!-- Added 'd-flex' to stretch the column -->
-        <!-- To activate: create a free form at https://formspree.io, then replace REPLACE_WITH_YOUR_ID below with your form ID -->
-        <form action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="post" class="php-email-form w-100" data-aos="fade-up" data-aos-delay="200">
-          <div class="row gy-4">
-
-            <div class="col-md-6">
-              <label for="name-field" class="pb-2">Your Name</label>
-              <input type="text" name="name" id="name-field" class="form-control" required="">
-            </div>
-
-            <div class="col-md-6">
-              <label for="email-field" class="pb-2">Your Email</label>
-              <input type="email" class="form-control" name="email" id="email-field" required="">
-            </div>
-
-            <div class="col-md-12">
-              <label for="subject-field" class="pb-2">Subject</label>
-              <input type="text" class="form-control" name="subject" id="subject-field" required="">
-            </div>
-
-            <div class="col-md-12">
-              <label for="message-field" class="pb-2">Message</label>
-              <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-            </div>
-
-            <div class="col-md-12 text-center">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-
-              <button type="submit">Send Message</button>
-            </div>
-
-          </div>
-        </form>
-      </div><!-- End Contact Form -->
+      <div class="col-lg-5">
+        <div class="contact-map">
+          <iframe src="https://maps.google.com/maps?q=University%20of%20Illinois%20Urbana-Champaign&output=embed" title="Champaign, IL, USA" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
     </div>
   </div>
 
