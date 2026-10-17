@@ -7,8 +7,7 @@
   <title>Aditi Saxena | Software Engineer</title>
   <meta name="description" content="Aditi Saxena is a software engineer with four years of experience at Expedia Group building payment systems behind $100B+ in annual bookings and agentic AI workflows. M.S. student at UIUC, open to Summer 2027 SDE internships and full-time roles.">
   <meta name="author" content="Aditi Saxena">
-  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#05070D" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#FFFFFF">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Aditi Saxena | Software Engineer">
@@ -93,16 +92,6 @@
       color-scheme: light;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #05070D; --bg-alt: #0B0F1A; --tile: #10162A; --surface: #141B2F;
-        --ink: #EEF1F7; --on-ink: #05070D; --muted: #A2AABD; --rule: #222A40; --chip: rgba(238, 241, 247, 0.08);
-        --accent: #3DD6A3; --accent-ink: #04140E; --accent-soft: #0E3326; --ink-tile: #1A2340; --night: #000000;
-        --console: #0E1528; --console-2: #141D35; --console-rule: #243050; --focus: #3DD6A3;
-        --lift: 0 1px 2px rgba(0, 0, 0, 0.5), 0 24px 48px -24px rgba(0, 0, 0, 0.8);
-        color-scheme: dark;
-      }
-    }
     :root[data-theme="dark"] {
       --bg: #05070D; --bg-alt: #0B0F1A; --tile: #10162A; --surface: #141B2F;
       --ink: #EEF1F7; --on-ink: #05070D; --muted: #A2AABD; --rule: #222A40; --chip: rgba(238, 241, 247, 0.08);
@@ -168,10 +157,6 @@
     .theme-btn .moon { display: none; }
     :root[data-theme="dark"] .theme-btn .sun { display: none; }
     :root[data-theme="dark"] .theme-btn .moon { display: block; }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) .theme-btn .sun { display: none; }
-      :root:not([data-theme="light"]) .theme-btn .moon { display: block; }
-    }
 
     /* =========================================================
        Buttons
@@ -1579,7 +1564,7 @@
 
     /* ---------- Theme ---------- */
     var root = document.documentElement;
-    function currentTheme() { return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+    function currentTheme() { return root.dataset.theme || 'light'; }
     function toggleTheme() {
       var next = currentTheme() === 'dark' ? 'light' : 'dark';
       root.dataset.theme = next;
