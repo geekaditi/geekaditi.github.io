@@ -244,7 +244,8 @@
     .route-line { position: relative; height: 2px; background: repeating-linear-gradient(90deg, var(--rule) 0 6px, transparent 6px 12px); }
     .route-line::before { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 62%; background: var(--accent); border-radius: 2px; }
     .route-line svg { position: absolute; left: 62%; top: 50%; width: 26px; height: 26px; transform: translate(-50%, -50%) rotate(45deg); color: var(--accent); background: var(--surface); }
-    .pass-fields { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 20px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule); }
+    .nowrap { white-space: nowrap; }
+    .pass-fields { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 0.95fr); gap: 14px 20px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule); }
     .pass-fields dt, .stub dt { font-size: 12px; color: var(--muted); }
     .pass-fields dd, .stub dd { margin-top: 3px; font-size: 14px; font-weight: 600; line-height: 1.3; }
     .pass { transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -868,8 +869,8 @@
             <dl class="pass-fields">
               <div><dt>Passenger</dt><dd>Aditi Saxena</dd></div>
               <div><dt>Departed</dt><dd>Expedia Group, 2021 - 2026</dd></div>
-              <div><dt>Now</dt><dd>M.S., University of Illinois</dd></div>
-              <div><dt>Class</dt><dd>Intern to SDE II</dd></div>
+              <div><dt>Now</dt><dd>M.S., University of Illinois <span class="nowrap">Urbana-Champaign</span></dd></div>
+              <div><dt>Class</dt><dd>Intern to <span class="nowrap">SDE II</span></dd></div>
             </dl>
           </div>
           <div class="stub">
