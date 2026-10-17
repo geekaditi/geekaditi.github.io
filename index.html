@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aditi Saxena | Software Engineer</title>
-  <meta name="description" content="Aditi Saxena is a software engineer with four years of experience at Expedia Group building payment systems behind $100B+ in annual bookings and agentic AI workflows. M.S. student at UIUC, open to Summer 2027 SDE internships and full-time roles.">
+  <meta name="description" content="Aditi Saxena is a software engineer with four years of experience at Expedia Group building payment systems behind $100B+ in annual bookings and agentic AI workflows. M.S. student at UIUC, open to Summer 2027 SDE internships.">
   <meta name="author" content="Aditi Saxena">
   <meta name="theme-color" content="#FFFFFF">
 
@@ -589,14 +589,14 @@
        Education
        ========================================================= */
     .campus { padding: 0; min-height: 380px; justify-content: flex-end; color: #fff; }
-    .campus img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+    .campus img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
     .campus::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 8, 18, 0) 30%, rgba(5, 8, 18, 0.78) 100%); }
-    .campus-copy { position: relative; z-index: 1; padding: var(--tile-pad); }
+    .campus-copy { position: relative; z-index: 1; padding: var(--tile-pad) var(--tile-pad) calc(var(--tile-pad) + 8px); }
     .campus-copy h3 { font-size: clamp(28px, 3.4vw, 42px); letter-spacing: -0.035em; }
     .campus-copy p { color: rgba(255, 255, 255, 0.85) !important; margin-top: 8px; }
     .campus-copy .inst { font-weight: 600; color: #fff !important; font-size: var(--t-lead); }
-    .campus-credit { position: absolute; z-index: 1; right: 18px; bottom: 14px; font-size: 12px; color: rgba(255, 255, 255, 0.8) !important; }
-    .campus-credit a { color: #fff; }
+    .campus-credit { position: absolute; z-index: 1; right: 14px; bottom: 9px; font-size: 8.5px; letter-spacing: 0.01em; line-height: 1; color: rgba(255, 255, 255, 0.55) !important; }
+    .campus-credit a { color: inherit; text-decoration-thickness: 0.5px; }
     .edu-tile .inst { margin-top: 10px; font-weight: 600; color: var(--ink); }
     .edu-tile .when { margin-top: 18px; align-self: flex-start; }
 
@@ -648,7 +648,7 @@
     .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .contact-actions { margin-bottom: var(--sp-head); }
 
-    .footer { padding: 0 0 44px; font-size: var(--t-xs); color: var(--muted); background: var(--bg-alt); }
+    .footer { padding: 0 0 44px; font-size: var(--t-xs); color: var(--muted); background: var(--bg); }
     .footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .footer .wrap > div { width: 100%; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 24px; }
 
@@ -814,9 +814,9 @@
         <a href="#highlights">Highlights</a>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
         <a href="#demos">Demos</a>
         <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
         <a href="#projects">Projects</a>
         <a href="#awards">Awards</a>
         <a href="#leadership">Leadership</a>
@@ -841,7 +841,7 @@
     <!-- ===================== Hero ===================== -->
     <section class="hero" id="top">
       <div class="wrap">
-        <p class="status"><span class="status-dot" aria-hidden="true"></span>Open to Summer 2027 SDE internships and full-time roles</p>
+        <p class="status"><span class="status-dot" aria-hidden="true"></span>Open to Summer 2027 SDE internships</p>
         <h1>Aditi Saxena</h1>
         <p class="hero-claim">I build payment systems behind $100B+ in annual bookings, and AI agents that give teams their time back.</p>
         <p class="hero-sub">Software engineer with four years of experience at Expedia Group, now an M.S. student at the University of Illinois Urbana-Champaign.</p>
@@ -876,7 +876,7 @@
             <div>
               <p class="next">Next stop</p>
               <p class="big">Summer 2027</p>
-              <p class="sub">SDE internship and full-time roles</p>
+              <p class="sub">Software engineering internship</p>
             </div>
             <dl>
               <div><dt>Gate</dt><dd>Your team</dd></div>
@@ -1085,6 +1085,38 @@
               </ul>
             </article>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Education ===================== -->
+    <section class="section" id="education" aria-labelledby="edu-title">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="edu-title">Education</h2>
+          <p>My academic foundation in engineering, systems, and information management.</p>
+        </div>
+        <div class="bento">
+          <article class="tile campus s-6">
+            <img src="assets/img/web/quad-aditi.jpg" width="2600" height="1237" alt="Foellinger Auditorium on the Main Quad at the University of Illinois, photographed by Aditi" loading="lazy">
+            <div class="campus-copy">
+              <h3>M.S. in Information Management</h3>
+              <p class="inst">University of Illinois Urbana-Champaign</p>
+              <p>2026 - 2028, Champaign, IL, USA</p>
+            </div>
+          </article>
+          <article class="tile edu-tile s-3">
+            <h3>B.Tech, Electronics &amp; Communication Engineering</h3>
+            <p class="inst">Indira Gandhi Delhi Technical University for Women</p>
+            <p class="meta">New Delhi, India. 82.98%</p>
+            <span class="when push">2018 - 2022</span>
+          </article>
+          <article class="tile edu-tile s-3">
+            <h3>Intermediate (Class XII)</h3>
+            <p class="inst">Delhi Public School, Ghaziabad</p>
+            <p class="meta">CBSE. 95.20%</p>
+            <span class="when push">2016 - 2017</span>
+          </article>
         </div>
       </div>
     </section>
@@ -1319,41 +1351,8 @@
       </div>
     </section>
 
-    <!-- ===================== Education ===================== -->
-    <section class="section alt" id="education" aria-labelledby="edu-title">
-      <div class="wrap">
-        <div class="head">
-          <h2 id="edu-title">Education</h2>
-          <p>My academic foundation in engineering, systems, and information management.</p>
-        </div>
-        <div class="bento">
-          <article class="tile campus s-6">
-            <img src="assets/img/web/quad.jpg" width="1400" height="494" alt="The Illini Union across the Main Quad at the University of Illinois in autumn" loading="lazy">
-            <div class="campus-copy">
-              <h3>M.S. in Information Management</h3>
-              <p class="inst">University of Illinois Urbana-Champaign</p>
-              <p>2026 - 2028, Champaign, IL, USA</p>
-            </div>
-            <p class="campus-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:UIUC_Illini_Union_and_Main_Quad.jpg" target="_blank" rel="noopener">Daniel Schwen</a>, CC BY-SA 4.0</p>
-          </article>
-          <article class="tile edu-tile s-3">
-            <h3>B.Tech, Electronics &amp; Communication Engineering</h3>
-            <p class="inst">Indira Gandhi Delhi Technical University for Women</p>
-            <p class="meta">New Delhi, India. 82.98%</p>
-            <span class="when push">2018 - 2022</span>
-          </article>
-          <article class="tile edu-tile s-3">
-            <h3>Intermediate (Class XII)</h3>
-            <p class="inst">Delhi Public School, Ghaziabad</p>
-            <p class="meta">CBSE. 95.20%</p>
-            <span class="when push">2016 - 2017</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- ===================== Projects ===================== -->
-    <section class="section" id="projects" aria-labelledby="proj-title">
+    <section class="section alt" id="projects" aria-labelledby="proj-title">
       <div class="wrap">
         <div class="head">
           <h2 id="proj-title">Research and projects</h2>
@@ -1409,7 +1408,7 @@
     </section>
 
     <!-- ===================== Awards ===================== -->
-    <section class="section alt" id="awards" aria-labelledby="awards-title">
+    <section class="section" id="awards" aria-labelledby="awards-title">
       <div class="wrap">
         <div class="head">
           <h2 id="awards-title">Awards and achievements</h2>
@@ -1451,7 +1450,7 @@
     </section>
 
     <!-- ===================== Leadership ===================== -->
-    <section class="section" id="leadership" aria-labelledby="lead-title">
+    <section class="section alt" id="leadership" aria-labelledby="lead-title">
       <div class="wrap">
         <div class="head">
           <h2 id="lead-title">Leadership roles and initiatives</h2>
@@ -1484,11 +1483,11 @@
     </section>
 
     <!-- ===================== Contact ===================== -->
-    <section class="section alt" id="contact" aria-labelledby="contact-title">
+    <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <div class="head">
           <h2 id="contact-title">Let's connect <span class="emoji" aria-hidden="true">👋</span></h2>
-          <p>Whether it's a Summer 2027 internship, a full-time role, a project, or a conversation about payments, AI, or product, I'd love to hear from you. The fastest way to reach me is by email.</p>
+          <p>Whether it's a Summer 2027 internship, a project, or a conversation about payments, AI, or product, I'd love to hear from you. The fastest way to reach me is by email.</p>
         </div>
         <div class="actions contact-actions">
           <a class="btn btn-accent" href="mailto:aditisaxena0704@gmail.com">Email me</a>
@@ -2049,9 +2048,9 @@
         { g: 'Go to', label: 'Highlights', run: go('highlights') },
         { g: 'Go to', label: 'About', run: go('about') },
         { g: 'Go to', label: 'Experience', run: go('experience') },
+        { g: 'Go to', label: 'Education', run: go('education') },
         { g: 'Go to', label: 'Live demos', run: go('demos') },
         { g: 'Go to', label: 'Skills', run: go('skills') },
-        { g: 'Go to', label: 'Education', run: go('education') },
         { g: 'Go to', label: 'Research and projects', run: go('projects') },
         { g: 'Go to', label: 'Awards and achievements', run: go('awards') },
         { g: 'Go to', label: 'Leadership roles', run: go('leadership') },
